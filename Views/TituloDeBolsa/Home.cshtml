@@ -1,0 +1,44 @@
+﻿@model CodingChallenge.Models.HomeModel
+@{
+    ViewBag.Title = "Home";
+}
+
+
+
+<body>
+    <div style="position:absolute;top:40%;left:40%;">
+        <label style="width:280px;text-align:center;">Buscar titulo de la bolsa:</label> <br />
+        @Html.TextBoxFor(x => x.tituloDeBolsaName, new { style = "width:1400px;border-radius:25px;", id = "txtTitulo" })
+    </div>
+
+
+</body>
+<link href="~/Scripts/jquery-ui.css" rel="stylesheet" />
+<script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+<script type="text/javascript">
+    $(document).ready(function () {
+        $("#txtTitulo").autocomplete({
+            select: function (event, ui) {
+                window.location.href = 'Detalle?idt=' + ui.item.id;
+            },
+            source: function (request, response) {
+                $.ajax({
+                    url: "/TituloDeBolsa/TituloDeBolsaAutocomplete",
+                    type: "POST",
+                    dataType: "json",
+                    data: { term: request.term },
+                    success: function (data) {
+                        response($.map(data, function (item) {
+
+                            return { label: item.Descripcion, value: item.Descripcion, id: item.Id };
+                        }))
+                    }
+                })
+            },
+            minLength: 2
+        });
+    })
+
+    
+</script>

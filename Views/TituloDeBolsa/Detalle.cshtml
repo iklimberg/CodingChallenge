@@ -1,0 +1,35 @@
+﻿@model CodingChallenge.Models.DetalleModel
+@{
+    ViewBag.Title = "Detalle";
+}
+<div style="position:absolute;width:auto;height:50px;background-color:black;top:0px;left:0px;right:0px;">
+    <label style="color:white;font-size:x-large;">TITULO DE BOLSA</label>
+</div>
+
+<body>
+    <div style="font-family:Calibri;font-size:medium;">
+        <div class="form-group">
+            Nombre:
+            @Html.Label(Model.descripcion)
+        </div>
+        <div class="form-group">
+            Detalle:
+            <label style="font-weight:bold;">@Html.DisplayFor(x => x.detalle)</label>
+        </div>
+        <div class="form-group">
+            Moneda:
+            @Html.Label(Model.moneda)
+        </div>
+        <div class="form-group">
+            Simbolo:
+            @Html.Label(Model.simbolo)
+        </div>
+        <div class="form-group">
+            Tipo:
+            @Html.Label(Model.tipo)
+        </div>
+
+        <a href="~/TituloDeBolsa/Home">Volver</a>
+    </div>
+    
+</body>
